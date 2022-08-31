@@ -1,6 +1,8 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+function generatePassword() {
+
 //ask the user how long is the password
 
 const length = Number(prompt("How long is the password?"));
@@ -9,12 +11,12 @@ console.log(length);
 
 if(isNaN(length)){
   alert("Please input some value!");
-  //return;  
+  return;  
 }
 
 if (length < 8 || length >128){
-  alert("Please enter a length between 8 - 128");
-  //return;
+  alert("Please enter a length between 8 - 128.");
+  return;
 }
 
 //let charset ="";
@@ -38,7 +40,7 @@ const includeSymbol = confirm("Do you want Symbol?");
 
 if(!includeLowercase && !includeUppercase && !includeNumber && !includeSymbol) {
   alert("Please select atleast one criteria.");
-  //return;
+  return;
 }
 
 //generate the pw
@@ -48,27 +50,26 @@ if(!includeLowercase && !includeUppercase && !includeNumber && !includeSymbol) {
 let charset="";
 
 if (includeUppercase){
-  Charset = charset + "ABCDE";
+  charset = charset + "ABCDE";
 }
 
 if (includeLowercase){
-  Charset = charset + "abcde";
+  charset = charset + "abcde";
 }
 
 if (includeNumber){
-  Charset = charset + "123456";
+  charset = charset + "123456";
 }
 
 if (includeSymbol){
-  Charset = charset + "!@#$%";
+  charset = charset + "!@#$%";
 }
 
+let password = "";
 
-for (i=0,i<length;i++) {
+for (ii=0;ii<length;ii++) {
 
 const randomChar = charset[Math.floor(Math.random() * charset.length)]
-
-console.log(randomChar);
 
 password = password + randomChar;
 
@@ -76,11 +77,16 @@ password = password + randomChar;
 
 return password;
 
+}
+
 // Write password to the #password input
-function writePassword() {
+
+function writePassword(event) {
   const password = generatePassword();
+
 if (password === undefined){
-  return;}
+  return;
+}
 
   var passwordText = document.querySelector("#password");
 
