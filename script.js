@@ -1,7 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
 //ask the user how long is the password
 
 const length = Number(prompt("How long is the password?"));
@@ -9,13 +8,13 @@ const length = Number(prompt("How long is the password?"));
 console.log(length);
 
 if(isNaN(length)){
-  alert("Please input some value!")
-  return;
+  alert("Please input some value!");
+  //return;  
 }
 
 if (length < 8 || length >128){
   alert("Please enter a length between 8 - 128");
-  return;
+  //return;
 }
 
 //let charset ="";
@@ -38,8 +37,8 @@ const includeSymbol = confirm("Do you want Symbol?");
 //we make sure atleast on criteria is selected
 
 if(!includeLowercase && !includeUppercase && !includeNumber && !includeSymbol) {
-  alert("Please select atleast one criteria.")
-  return;
+  alert("Please select atleast one criteria.");
+  //return;
 }
 
 //generate the pw
@@ -66,21 +65,27 @@ if (includeSymbol){
 
 
 for (i=0,i<length;i++) {
-  
+
+const randomChar = charset[Math.floor(Math.random() * charset.length)]
+
+console.log(randomChar);
+
+password = password + randomChar;
+
 }
+
+return password;
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  const password = generatePassword();
 if (password === undefined){
   return;}
 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
-
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
 
