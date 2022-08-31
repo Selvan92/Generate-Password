@@ -4,63 +4,77 @@ var generateBtn = document.querySelector("#generate");
 
 //ask the user how long is the password
 
+const length = Number(prompt("How long is the password?"));
+
+console.log(length);
+
+if(isNaN(length)){
+  alert("Please input some value!")
+  return;
+}
+
+if (length < 8 || length >128){
+  alert("Please enter a length between 8 - 128");
+  return;
+}
+
+//let charset ="";
+
 //ask if want to include
 //uppercase
+
+const includeUppercase = confirm("Do you want uppercase?");
+
 //lowercase
+const includeLowercase = confirm("Do you want Lowercase?");
+
+
 //number
+const includeNumber = confirm("Do you want Number?");
+
 //special symbols
+const includeSymbol = confirm("Do you want Symbol?");
 
-//generate password based on the criteias selected and length
+//we make sure atleast on criteria is selected
 
-//1. create the charset based on the criterias
+if(!includeLowercase && !includeUppercase && !includeNumber && !includeSymbol) {
+  alert("Please select atleast one criteria.")
+  return;
+}
 
-//2. loop for the 'length' times, for each iterations, 
+//generate the pw
 
-//grab a random char and append to an accumulator
+//set the charset
 
+let charset="";
 
+if (includeUppercase){
+  Charset = charset + "ABCDE";
+}
 
+if (includeLowercase){
+  Charset = charset + "abcde";
+}
 
+if (includeNumber){
+  Charset = charset + "123456";
+}
 
-//bank of chars
-
-//abcdeABCDE1234!@#$%^
-
-//length:6
-//loop to get the random characters
-
-//pw -- set f random characters
-
-
-
-//return the password
-
-
-
-
-
-
-
+if (includeSymbol){
+  Charset = charset + "!@#$%";
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for (i=0,i<length;i++) {
+  
+}
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+if (password === undefined){
+  return;}
+
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
